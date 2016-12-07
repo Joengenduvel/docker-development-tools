@@ -1,6 +1,7 @@
 FROM ubuntu
 
 ENV INTELLIJ_URL=https://download.jetbrains.com/idea/ideaIU-2016.3.tar.gz
+ENV VS_CODE_URL=https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 ENV DISPLAY=192.168.1.1:0.0
 
 VOLUME["/root"]
@@ -20,3 +21,8 @@ RUN apt-get update \
 	&& mkdir /opt/intellij \
 	&& tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
 	&& rm -rf /tmp/*
+
+RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/ \
+ && dpkg -i code_*.deb \
+ && apt-get install -f \
+ && rm -rf /tmp/*
