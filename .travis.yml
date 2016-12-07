@@ -3,11 +3,6 @@ sudo: required
 services:
   - docker
 
-language: go
-
-go:
-  - '1.5'
-
 env:
   global:
     - secure: "GfQFEKGEEwSFOjZnnctZuLlXDp8njTkApVRhuae3XwsmxMYOUOoVyRG7kxgMp9CKrGrTCfpyMZSwwweqDGMZZzuF12BLGPeNMuDYrUsikZwYkDn1l8JJGhq/22iCJ/7Oj11B7UFzk42rZDWADc/uMbt2Oce+vhrciZkcl53Wg6yxyGK6IOSgODYSkfm+OC5rfEmS+ObMq8bC9gYfgBdlPYRy/E9rXAHMYa0FyFJ8KR9uX1Ut5Vo7RFA7WMZDH7UEkw1hz9dCPVtlIs1c1hpkezdpfW/B6LWeezon7cE7ms2c8CQtoimSu/MpeXW0JdExxClZDp+K9Qfw0QCNdi10dyLgRmxzZ7CqpNDgOLcRZnU70ncuRY914JiEJdr1QzMZ64EP7FpMCPpsCuNbnF/jZGe29n28mxzSre5eQav2wDcMSBGizUEnSGL7BIpTs6PRDzvx3z+xlWnkc/tEYUnczjJ8AnrRuBcwlDHOdTRyK/6F158If9KBmcMCcPvClA1fF3bv+6iaqeDsberxr/1Y77MMUVa28pPmC0EBK2QdwgyMYzR0pLVnUYHq7Ty7cipmdCBB40XCieClcGz2/ZHfCiRY8RljLD9Ljz2OkPPkFaF8Jb7mEmXs5JqcBSY85YtZVH//1LVR5vobLHC4nq28R/x50l7KHxSP6sVlTpCTsC0=" # DOCKER_EMAIL
