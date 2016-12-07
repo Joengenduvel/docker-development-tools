@@ -23,8 +23,8 @@ RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& rm -rf /tmp/*
 
 RUN apt-get update \
- && apt-get install libxss1
+ && apt-get install -yqq libxss1
 RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb
 RUN dpkg -i /tmp/vscode.deb; exit 0
-RUN apt-get install -f \
+RUN apt-get install -yf \
  && rm -rf /tmp/*
