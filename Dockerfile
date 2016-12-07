@@ -3,6 +3,8 @@ FROM ubuntu
 ENV INTELLIJ_URL=https://download.jetbrains.com/idea/ideaIU-2016.3.tar.gz
 ENV DISPLAY=192.168.1.1:0.0
 
+VOLUME["/root"]
+
 RUN apt-get update \
  && apt-get install -yqq software-properties-common \
  && apt-add-repository -y ppa:webupd8team/java \
