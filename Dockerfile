@@ -22,7 +22,7 @@ RUN apt-get update \
 	&& tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
 	&& rm -rf /tmp/*
 
-RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/ \
- && dpkg -i code_*.deb \
+RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb \
+ && dpkg -i /tmp/vscode.deb \
  && apt-get install -f \
  && rm -rf /tmp/*
