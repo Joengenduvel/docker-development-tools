@@ -17,12 +17,13 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
- RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
+RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& mkdir /opt/intellij \
 	&& tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
 	&& rm -rf /tmp/*
 
-RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb \
- && dpkg -i /tmp/vscode.deb \
+RUN apt-get install libxss1 \
+ && wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb \
+ && dpkg -i /tmp/vscode.deb; exit 0 \
  && apt-get install -f \
  && rm -rf /tmp/*
