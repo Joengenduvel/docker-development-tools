@@ -22,9 +22,6 @@ RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
 	&& rm -rf /tmp/*
 
-RUN apt-get update \
- && apt-get install -y gdm3
-# && apt-get install -y libxss1 libnotify4 
 RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb
 RUN dpkg -i /tmp/vscode.deb; exit 0
 RUN apt-get install -yf \
