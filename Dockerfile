@@ -4,7 +4,9 @@ ENV INTELLIJ_URL=https://download.jetbrains.com/idea/ideaIU-2016.3.tar.gz
 ENV VS_CODE_URL=https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 ENV DISPLAY=192.168.1.1:0.0
 
-VOLUME ["/root"]
+RUN useradd -m -p dev dev
+
+VOLUME ["/home/dev"]
 
 RUN apt-get update \
  && apt-get install -yqq software-properties-common \
@@ -26,3 +28,5 @@ RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb
 RUN dpkg -i /tmp/vscode.deb; exit 0
 RUN apt-get install -yf \
  && rm -rf /tmp/*
+
+CMD su dev
