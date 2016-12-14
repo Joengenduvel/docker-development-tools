@@ -7,6 +7,7 @@ ENV DISPLAY=192.168.1.1:0.0
 RUN useradd -m -p dev dev
 
 RUN apt-get update \
+ && apt-get install -yqq lightdm
  && apt-get install -yqq software-properties-common \
  && apt-add-repository -y ppa:webupd8team/java \
  && apt-get -qq update \
@@ -29,4 +30,4 @@ RUN apt-get install -yf \
 
 VOLUME ["/home/dev"]
 
-USER dev
+# USER dev
