@@ -6,8 +6,6 @@ ENV DISPLAY=192.168.1.1:0.0
 
 RUN useradd -m -p dev dev
 
-VOLUME ["/home/dev"]
-
 RUN apt-get update \
  && apt-get install -yqq software-properties-common \
  && apt-add-repository -y ppa:webupd8team/java \
@@ -29,4 +27,6 @@ RUN dpkg -i /tmp/vscode.deb; exit 0
 RUN apt-get install -yf \
  && rm -rf /tmp/*
 
-CMD su dev
+VOLUME ["/home/dev"]
+
+USER dev
