@@ -37,3 +37,5 @@ RUN apt-get install -yf \
 VOLUME ["/home/dev"]
 
 # USER dev
+
+SHELL ["bash"]
