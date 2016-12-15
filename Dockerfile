@@ -8,7 +8,7 @@ RUN useradd -m -p dev dev
 
 # making sure a display manager and X11 client are installed: https://help.ubuntu.com/community/ServerGUI
 RUN apt-get update \
- && apt-get install -yqq --force-confdef xauth
+ && apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" xauth
  && apt-get install -yqq software-properties-common \
  && apt-add-repository -y ppa:webupd8team/java \
  && apt-get -qq update \
