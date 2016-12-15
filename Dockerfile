@@ -6,10 +6,13 @@ ENV DISPLAY=192.168.1.1:0.0
 
 RUN useradd -m -p dev dev
 
+RUN apt-get update
+
 # making sure a display manager and X11 client are installed: https://help.ubuntu.com/community/ServerGUI
-RUN apt-get update \
- && apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" xauth \
- && apt-get install -yqq software-properties-common \
+RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" xauth libxrender1 libxtst6 libxi6
+
+# Oracle Java 8
+RUN  apt-get install -yqq software-properties-common \
  && apt-add-repository -y ppa:webupd8team/java \
  && apt-get -qq update \
  && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
@@ -18,12 +21,14 @@ RUN apt-get update \
  && apt-get --purge autoremove -y software-properties-common \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
- 
+
+# Intellij
 RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& mkdir /opt/intellij \
 	&& tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
 	&& rm -rf /tmp/*
 
+# Visual Studio Code
 RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb
 RUN dpkg -i /tmp/vscode.deb; exit 0
 RUN apt-get install -yf \
