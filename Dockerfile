@@ -9,7 +9,7 @@ RUN useradd -m -p dev dev
 RUN apt-get update
 
 # making sure a display manager and X11 client are installed: https://help.ubuntu.com/community/ServerGUI
-RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" xauth libxrender1 libxtst6 libxi6
+RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" libxrender1 libxtst6 libxi6 notification-daemon libnss3
 
 # Oracle Java 8
 RUN  apt-get install -yqq software-properties-common \
@@ -30,6 +30,7 @@ RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 
 # Visual Studio Code
 RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb
+RUN apt-get install
 RUN dpkg -i /tmp/vscode.deb; exit 0
 RUN apt-get install -yf \
  && rm -rf /tmp/*
