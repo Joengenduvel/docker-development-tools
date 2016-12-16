@@ -30,10 +30,8 @@ RUN wget --progress=bar:force $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& rm -rf /tmp/*
 
 # Visual Studio Code
-RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb
-RUN apt-get install
-RUN dpkg -i /tmp/vscode.deb; exit 0
-RUN apt-get install -yf \
+RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb \
+ && dpkg -i /tmp/vscode.deb \
  && rm -rf /tmp/*
 
 VOLUME ["/home/dev"]
