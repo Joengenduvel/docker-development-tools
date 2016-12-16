@@ -6,11 +6,12 @@ ENV DISPLAY=192.168.1.1:0.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN useradd -m -p dev dev
+VOLUME ["/home/dev"]
 
 RUN apt-get update
 
 # making sure a display manager and X11 client are installed: https://help.ubuntu.com/community/ServerGUI
-RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" libxrender1 libxtst6 libxi6 libnotify4 libnss3
+RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" libgtk2.0-bin libnotify4 libnss3
 
 # Oracle Java 8
 RUN  apt-get install -yqq software-properties-common \
@@ -34,8 +35,7 @@ RUN wget --progress=bar:force $VS_CODE_URL -O /tmp/vscode.deb \
  && dpkg -i /tmp/vscode.deb \
  && rm -rf /tmp/*
 
-VOLUME ["/home/dev"]
 
-# USER dev
+USER dev
 
 SHELL ["bash"]
