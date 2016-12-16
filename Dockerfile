@@ -17,7 +17,8 @@ RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::
  libnotify4 \
  libnss3 \
  libasound2 \
- gconf-service
+ gconf-service \
+ libxss1
  
  
 
