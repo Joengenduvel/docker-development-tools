@@ -11,7 +11,15 @@ VOLUME ["/home/dev"]
 RUN apt-get update
 
 # making sure a display manager and X11 client are installed: https://help.ubuntu.com/community/ServerGUI
-RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" libgtk2.0-bin libnotify4 libnss3
+RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+ libgtk2.0-bin \
+ #special for vs code
+ libnotify4 \
+ libnss3 \
+ libasound2 \
+ gconf-service
+ 
+ 
 
 # Oracle Java 8
 RUN  apt-get install -yqq software-properties-common \
