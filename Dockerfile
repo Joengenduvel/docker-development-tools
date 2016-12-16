@@ -3,13 +3,14 @@ FROM ubuntu
 ENV INTELLIJ_URL=https://download.jetbrains.com/idea/ideaIU-2016.3.tar.gz
 ENV VS_CODE_URL=https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 ENV DISPLAY=192.168.1.1:0.0
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN useradd -m -p dev dev
 
 RUN apt-get update
 
 # making sure a display manager and X11 client are installed: https://help.ubuntu.com/community/ServerGUI
-RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" libxrender1 libxtst6 libxi6 notification-daemon libnss3
+RUN apt-get install -yqq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" libxrender1 libxtst6 libxi6 libnotify4 libnss3
 
 # Oracle Java 8
 RUN  apt-get install -yqq software-properties-common \
