@@ -33,7 +33,12 @@ Replace the IP in the `DISPLAY` environment variable with your host's IP or host
 * menus of Visual Studio Code are slow
 
 ## Usage
-Run the container using
+### Create a home volume
+`docker create -v /home/dev --name home alpine /bin/true`
+### Run the container
 ```
-docker run joengenduvel/intellij
+docker run joengenduvel/development-machine
 ```
+### Open Intellij
+* Connect to the running container
+* Execute `intellij` in the container
