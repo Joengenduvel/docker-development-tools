@@ -5,11 +5,12 @@ ENV INTELLIJ_URL=http://download.jetbrains.com/idea/ideaIU-2016.3.tar.gz
 #ENV VS_CODE_URL=https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 ENV DISPLAY=192.168.1.1:0.0
 
+# Base X machine
 RUN adduser -D dev \
  && addgroup developers \
  && addgroup dev developers
 VOLUME ["/home/dev"]
-RUN chown -r dev:developers /home/dev
+RUN chown -R dev:developers /home/dev
 
 RUN apk update \
  && apk add dbus \
@@ -20,6 +21,9 @@ RUN apk update \
  && ttfs=$(apk search -q ttf- | grep -v '\-doc') \
  && apk add $ttfs \
  && LC_ALL=C
+
+# Developer tools
+RUN apk add git
 
 RUN wget $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
