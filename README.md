@@ -27,7 +27,7 @@ Replace the IP in the `DISPLAY` environment variable with your host's IP or host
 ## This machine includes
 * Oracle Java 8 JDK
 * Intellij 2016.3
-* Visual Studio Code
+* Firefox
 
 ## Known issues
 * menus of Visual Studio Code are slow
