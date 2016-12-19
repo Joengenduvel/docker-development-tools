@@ -13,7 +13,9 @@ VOLUME ["/home/dev"]
 RUN apk update \
  && apk add dbus \
  && apk add libx11 \
- && apk add firefox-esr
+ && apk add firefox-esr \
+ && apk add curl ca-certificates \
+ && update-ca-certificates
 
 #add True Type Fonts
 RUN ttfs=$(apk search -q ttf- | grep -v '\-doc') \
@@ -21,9 +23,10 @@ RUN ttfs=$(apk search -q ttf- | grep -v '\-doc') \
 
 RUN wget $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
-	&& ln -s /bin/idea*/bin/idea.sh /bin/intellij \
-	&& rm -rf /tmp/*
+	&& ln -s /bin/idea*/bin/idea.sh /bin/intellij
+
+RUN rm -rf /var/cache/apk/* \
+ && rm -rf /tmp/*
 
 USER dev
-
-SHELL ["bash"]
+WORKDIR ~
