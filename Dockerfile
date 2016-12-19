@@ -8,9 +8,10 @@ ENV DISPLAY=192.168.1.1:0.0
 # Base X machine
 RUN adduser -D dev \
  && addgroup developers \
- && addgroup dev developers
+ && addgroup dev developers \
+ && chown -R dev:developers /home/dev
+
 VOLUME ["/home/dev"]
-RUN chown -R dev:developers /home/dev
 
 RUN apk update \
  && apk add dbus \
