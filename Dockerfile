@@ -9,6 +9,7 @@ RUN adduser -D dev \
  && addgroup developers \
  && addgroup dev developers
 VOLUME ["/home/dev"]
+RUN chown -r dev:developers /home/dev
 
 RUN apk update \
  && apk add dbus \
@@ -28,4 +29,4 @@ RUN rm -rf /var/cache/apk/* \
  && rm -rf /tmp/*
 
 USER dev
-WORKDIR ~
+RUN cd ~
