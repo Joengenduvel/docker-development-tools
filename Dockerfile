@@ -15,11 +15,10 @@ RUN apk update \
  && apk add libx11 \
  && apk add firefox-esr \
  && apk add curl ca-certificates \
- && update-ca-certificates
-
-#add True Type Fonts
-RUN ttfs=$(apk search -q ttf- | grep -v '\-doc') \
- && apk add $ttfs
+ && update-ca-certificates \
+ && ttfs=$(apk search -q ttf- | grep -v '\-doc') \
+ && apk add $ttfs \
+ && LC_ALL=C
 
 RUN wget $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
