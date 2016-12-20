@@ -27,8 +27,10 @@ RUN apk add --no-cache git nodejs \
 #IDE
 RUN curl -L -o /tmp/intellij.tar.gz $INTELLIJ_URL \
  && tar -xzf /tmp/intellij.tar.gz -C /bin \
- && ln -s /bin/idea-IU-*/bin/idea.sh /usr/bin/intellij \
  && rm -rf /tmp/*
 
+ADD ./intellij /bin
+RUN chmod +x /bin/intellij
+
 USER dev
-RUN cd ~
+WORKDIR /home/dev
