@@ -17,19 +17,18 @@ RUN apk update \
  && apk add --no-cache dbus libx11 firefox-esr ca-certificates openssl curl \
  && update-ca-certificates \
  && ttfs=$(apk search -q ttf- | grep -v '\-doc') \
- && apk add $ttfs
+ && apk add --no-cache $ttfs \
+ && rm -rf /var/cache/apk/*
 
 # Developer tools
-RUN apk add --no-cache git nodejs
-
+RUN apk add --no-cache git nodejs \
+ && npm install -g grunt-cli bower \
+ 
+#IDE
 RUN curl -L -o /tmp/intellij.tar.gz $INTELLIJ_URL \
-	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
-	&& ln -s /bin/idea-IU-*/bin/idea.sh /usr/bin/intellij
-
-RUN rm -rf /var/cache/apk/* \
+ && tar -xzf /tmp/intellij.tar.gz -C /bin \
+ && ln -s /bin/idea-IU-*/bin/idea.sh /usr/bin/intellij \
  && rm -rf /tmp/*
-
-RUN chown -R dev:developers /home/dev
 
 USER dev
 RUN cd ~
