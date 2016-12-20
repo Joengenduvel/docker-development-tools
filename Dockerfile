@@ -36,3 +36,5 @@ RUN chmod +x /bin/intellij
 USER dev
 
 WORKDIR /home/dev
+
+ENTRYPOINT exec intellij
