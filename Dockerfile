@@ -18,7 +18,7 @@ RUN apk update \
  && apk add libx11 \
  && apk add firefox-esr \
  && apk add ca-certificates \
- && apk add open-ssl \
+ && apk add openssl \
  && update-ca-certificates \
  && ttfs=$(apk search -q ttf- | grep -v '\-doc') \
  && apk add $ttfs \
