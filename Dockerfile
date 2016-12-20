@@ -24,14 +24,17 @@ RUN apk update \
  && LC_ALL=C
 
 # Developer tools
-RUN apk add git
+RUN apk add git \
+ && apk add nodejs
 
 RUN wget $INTELLIJ_URL -O /tmp/intellij.tar.gz \
 	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
-	&& ln -s /bin/idea*/bin/idea.sh /bin/intellij
+	&& ln -s /bin/idea-IU-*/bin/idea.sh /usr/bin/intellij
 
 RUN rm -rf /var/cache/apk/* \
  && rm -rf /tmp/*
+
+RUN chown -R dev:developers /home/dev
 
 USER dev
 RUN cd ~
