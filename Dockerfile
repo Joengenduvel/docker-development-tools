@@ -28,7 +28,7 @@ RUN apk update \
 RUN apk add git \
  && apk add nodejs
 
-RUN curl -L -O /tmp/intellij.tar.gz $INTELLIJ_URL \
+RUN curl -L -o /tmp/intellij.tar.gz $INTELLIJ_URL \
 	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
 	&& ln -s /bin/idea-IU-*/bin/idea.sh /usr/bin/intellij
 
