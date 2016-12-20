@@ -1,0 +1,7 @@
+#/bin/sh
+
+#find installation directory of intellij
+idea_path=echo /bin/idea*/bin/idea.sh
+
+#Execute intellij
+$idea_path
