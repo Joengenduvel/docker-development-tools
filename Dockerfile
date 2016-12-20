@@ -22,7 +22,7 @@ RUN apk update \
 
 # Developer tools
 RUN apk add --no-cache git nodejs \
- && npm install -g grunt-cli bower \
+ && npm install -g grunt-cli bower
  
 #IDE
 RUN curl -L -o /tmp/intellij.tar.gz $INTELLIJ_URL \
@@ -30,7 +30,9 @@ RUN curl -L -o /tmp/intellij.tar.gz $INTELLIJ_URL \
  && rm -rf /tmp/*
 
 ADD ./intellij /bin
+
 RUN chmod +x /bin/intellij
 
 USER dev
+
 WORKDIR /home/dev
