@@ -14,19 +14,13 @@ RUN adduser -D dev \
 VOLUME ["/home/dev"]
 
 RUN apk update \
- && apk add dbus \
- && apk add libx11 \
- && apk add firefox-esr \
- && apk add ca-certificates \
- && apk add openssl \
+ && apk add --no-cache dbus libx11 firefox-esr ca-certificates openssl curl \
  && update-ca-certificates \
  && ttfs=$(apk search -q ttf- | grep -v '\-doc') \
- && apk add $ttfs \
- && LC_ALL=C
+ && apk add $ttfs
 
 # Developer tools
-RUN apk add git \
- && apk add nodejs
+RUN apk add --no-cache git nodejs
 
 RUN curl -L -o /tmp/intellij.tar.gz $INTELLIJ_URL \
 	&& tar -xzf /tmp/intellij.tar.gz -C /bin \
