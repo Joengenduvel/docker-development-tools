@@ -38,7 +38,7 @@ Replace the IP in the `DISPLAY` environment variable with your host's IP or host
 `docker create -v /home/dev --name home alpine /bin/true`
 ### Run the container
 ```
- docker run -dt --volumes-from home joengenduvel/development-machine:latest "sh"
+ docker run -i -t --rm --name intellij --volumes-from home joengenduvel/development-machine intellij
 ```
 ### Open Intellij
 * Connect to the running container
